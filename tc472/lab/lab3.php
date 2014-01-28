@@ -39,17 +39,25 @@
       </div>
     </div>
     <div class="container">
-		<div class="text-center"><h1>Lab 2</h1></div>
+		<div class="text-center"><h1>Lab 3</h1></div>
 		<hr class="title">
 		<div class="row">
-			<div class="col-xs-6 col-md-offset-3 text-center">
+			<div class="col-xs-6 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 text-center well">
 				<form method="post">
-					<label for="firstname">First Name: </label><input type="text" name="firstname"><br />
-					<label for="lastname">Last Name: </label><input type="text" name="lastname"><br />
-					<label for="mail">E-mail: </label><input type="text" name="mail"><br /><br />
-					<label for="sex">Sex</label><br />
-					<input type="radio" name="sex" value="male"> Male<br />
-					<input type="radio" name="sex" value="female"> Female<br /><br />
+					<div class="form-group">
+						<label for="firstname">First Name: </label><input type="text" name="firstname" class="form-control" style="width:50%;text-align:center;margin:0 auto;" value="<?php echo $_POST['firstname'] ?>" >
+					</div>
+					<div class="form-group">
+						<label for="lastname">Last Name: </label><input type="text" name="lastname" class="form-control" style="width:50%;text-align:center;margin:0 auto;" value="<?php echo $_POST['lastname'] ?>">
+					</div>
+					<div class="form-group">
+						<label for="mail">E-mail: </label><input type="text" name="mail" class="form-control" style="width:50%;text-align:center;margin:0 auto;" value="<?php echo $_POST['mail'] ?>">
+					</div>
+					<div class="form-group">
+						<label for="sex">Sex</label><br />
+						<input type="radio" name="sex" value="male" <?php if ($_POST['sex'] == "male") { echo "checked=\"checked\"";} ?>> Male<br />
+						<input type="radio" name="sex" value="female" <?php if ($_POST['sex'] == "female") { echo "checked=\"checked\"";} ?>> Female
+					</div>
 					<label for="price">Price</label><br />
 					<select name="price">
 						<option></option>
@@ -59,9 +67,56 @@
 						<option value="unaffordable">Unaffordable</option>
 					</select><br /><br />
 					<label for="feedback">Provide Feedback</label><br />
-					<div><textarea name="feedback"cols="30" rows="4"></textarea></div><br />
-					<input type="submit" value="Submit" class="btn btn-submit">
+					<div><textarea name="feedback" cols="30" rows="4" class="form-control" style="width:50%;margin:0 auto;" value=" value="<?php echo $_POST['feedback']; ?>"></textarea></div><br />
+					<input type="submit" name="submit" value="Submit" class="btn btn-submit">
 				</form>
+				<br><br>
+				<?php 
+				    $firstname = $_POST['firstname'];
+				    $lastname = $_POST['lastname'];
+				    $mail = $_POST['mail'];
+				    $sex = $_POST['sex'];
+				    $price = $_POST['price'];
+				    $feedback = $_POST['feedback'];
+				    
+					if (isset($_POST['submit']))
+						{  
+						
+						   if (!$firstname) { 
+						   echo "<p>Please enter your first name.</p>";
+						   } else {
+						   	echo "<p>Your first name is $firstname.</p>";
+						   }
+						   if (!$lastname) { 
+						   echo "<p>Please enter your last name.</p>";
+						   } else {
+						   	echo "<p>Your last name is $lastname.</p>";
+						   }
+						   if (!$mail) { 
+						   echo "<p>Please enter your email address.</p>";
+						   } else {
+						   	echo "<p>Your email is $mail</p>";
+						   }
+						   if (!$sex) { 
+						   echo "<p>Please select your sex.</p>";
+						   } else {
+						   	echo "<p>You selected $sex as your sex.</p>";
+						   }
+						   if (!$price) { 
+						   echo "<p>Please select your price.</p>";
+						   } else {
+						   	echo "<p>You selected $price as the price.</p>";
+						   }
+						   if (!$feedback) { 
+						   echo "<p>Please enter your feedback</p>";
+						   } else {
+						   	echo "<p>Your feedback is: <blockquote>$feedback</blockquote></p>";
+						   }
+						}   
+					else { 
+						echo "<p>Please complete the form above and click \"Submit\".</p>";
+					}
+				?>
 			</div>
 		</div>  	
     </div> <!-- /container -->     
