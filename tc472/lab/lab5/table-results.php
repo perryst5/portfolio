@@ -9,8 +9,8 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link href='http://fonts.googleapis.com/css?family=Arvo:400,700|Ubuntu:400,700' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="../css/master.css">
-
+        <link rel="stylesheet" href="../../../css/master.css">
+		<style>td, th {border: 1px solid #999;padding: 2px;}</style>
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body>
@@ -29,34 +29,44 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../page/work.html">Work</a></li>
-            <li><a href="../page/resume.html">Resume</a></li>
-            <li><a href="../page/contact.html">Contact</a></li>
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../../page/work.html">Work</a></li>
+            <li><a href="../../../page/resume.html">Resume</a></li>
+            <li><a href="../../../page/contact.html">Contact</a></li>
           </ul>
-          <a class="navbar-brand pull-right hidden-xs" href="../index.html">Steven Perry</a>
+          <a class="navbar-brand pull-right hidden-xs" href="../../../index.html">Steven Perry</a>
         </div><!--/.navbar-collapse -->
       </div>
     </div>
     <div class="container">
-		<div class="text-center"><h1>TC472 Projects</h1></div>
+		<div class="text-center"><h1>Lab 5 - Table</h1></div>
 		<hr class="title">
 		<div class="row">
-			<div class="col-md-6">
-				<h2>Lecture Assignments</h2>
-				<ul>
-					<li><a href="lecture/case_study.html">Case Study - Venmo</a></li>
-				</ul>
-			</div>
-			<div class="col-md-6">
-				<h2>Lab Assignments</h2>
-				<ul>
-					<li><a href="lab/lab2.html">Lab 2</a></li>
-					<li><a href="lab/lab3.php">Lab 3</a></li>
-					<li><a href="lab/lab4.html">Lab 4</a></li>
-					<li><a href="lab/lab5.php">Lab 5</a></li>
-					<li><a href="lab/thestore">The Store</a></li>
-				</ul>
+			<div class="col-xs-6 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 text-center well">
+				<?php
+				
+					require("connect.php");
+				
+					$SQL="SELECT * FROM lab5";
+					$result = mysql_query($SQL) or die("could not complete your query");
+					
+						echo "<table><tr><th>Name</th><th>Email</th><th>Sex</th><th>Price</th><th>Feedback</th></tr>";
+							while ($row = mysql_fetch_array($result))  {
+							$firstname = $row['firstname'];
+							$lastname = $row['lastname'];
+							$mail = $row['mail'];
+							$sex = $row['sex'];
+							$price = $row['price'];
+							$feedback = $row['feedback'];
+				
+							echo "<tr><td>$firstname $lastname</td><td>$mail</td><td>$sex</td><td>$price</td><td>$feedback</td></tr>";
+							} 
+						echo "</table>";
+				
+				mysql_close($connect);
+				
+				?> 
+				<p><a href="../lab5.php">Back to the Form!</a></p>
 			</div>
 		</div>  	
     </div> <!-- /container -->     
