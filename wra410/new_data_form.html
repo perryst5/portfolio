@@ -1,0 +1,105 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/master.css">
+    <script src="js/vendor/modernizr.js"></script>
+    <title>Add to Collection</title>
+  </head>
+  <body>
+	<header>
+	    <div class="row">
+		<div class="large-8 medium-6 small-12 columns">
+		    <a href="index.html"><img src="http://placehold.it/300x150" alt="logo" /></a>
+		</div>
+		<div class="large-4 medium-6 hide-for-small-only columns">
+		   <ul class="button-group right">
+			<li><a href="#" class="button medium">Sign Up</a></li>
+			<li><a href="#" class="button medium">Log In</a></li>
+		    </ul>
+		</div>
+	    </div>
+	    <div class="show-for-small-only row">
+		<div class="small-12">
+		    <ul class="button-group">
+			<li><a href="#" class="button small">Sign Up</a></li>
+			<li><a href="#" class="button small">Log In</a></li>
+		    </ul>
+		</div>    
+	    </div>
+        </header>
+    </div>
+    <div class="row">
+        <div class="medium-3 columns">
+	    <ul class="navigation content">
+		<li><a href="your_collection.html">View Your Discography</a></li>
+		<li><a href="new_data_form.html">Add An Album</a></li>
+		<li><a href="#">Update User Profile</a></li>
+	    </ul>
+	</div>
+	<div class="medium-9 columns">
+	    <!-- Form for inputting album data -->
+	    <form class="content">
+		<h1>Add To Your Collection</h1>
+		<div class="row">
+		  <div class="large-12 columns">
+		    <label>Album Title</label>
+		    <input type="text" placeholder="Album Title" />
+		  </div>
+		</div>
+		<div class="row">
+		  <div class="large-4 medium-4 columns">
+		    <label>Album Artist</label>
+		    <input type="text" placeholder="Album Artist" />
+		  </div>
+		  <div class="large-4 medium-4 columns">
+		    <label>Record Label</label>
+		    <input type="text" placeholder="Record Label" />
+		  </div>
+		  <div class="large-4 medium-4 columns">
+			<label>Type of Album</label>
+			<select>
+			  <option></option>
+			  <option value="Vinyl">Vinyl</option>
+			  <option value="CD">CD</option>
+			  <option value="Digital">Digital</option>
+			  <option value="Casette">Casette</option>
+			</select>
+		  </div>
+		</div>
+		<div class="row">
+		  <div class="large-3 small-5 columns">
+		    <label>On Loan?</label>
+		    <input id="checkbox1" type="checkbox"><label for="checkbox1">Yes</label>
+		    <input id="checkbox2" type="checkbox"><label for="checkbox2">No</label>
+		  </div>
+		  <div class="large-9 small-7 columns">
+		    <label>If so, to whom?</label>
+		    <input type="text" placeholder="John Smith"></input>
+		  </div>
+		</div>
+		<div class="row">
+		  <div class="large-12 columns">
+		    <label>Additional Comments</label>
+		    <textarea placeholder="Condition, personal story, etc."></textarea>
+		  </div>
+		</div>
+		<div class="row">
+		    <div class="small-4 columns">
+			<input type="submit" value="Submit">
+			<input type="reset" value="Clear Form">
+		    </div>
+		</div>
+	    </form>
+        </div>
+    </div>
+    <footer></footer>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
