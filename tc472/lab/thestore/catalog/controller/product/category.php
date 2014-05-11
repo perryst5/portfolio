@@ -1,5 +1,15 @@
 <?php 
-class ControllerProductCategory extends Controller {  
+/* Magictoolbox magiczoomplus module BEGIN */
+	global $aFolder;
+	if (!defined('HTTP_ADMIN')) define('HTTP_ADMIN','admin');
+	$aFolder = preg_replace('/.*\/([^\/].*)\//is','$1',HTTP_ADMIN);
+	if (!isset($GLOBALS['magictoolbox']['magiczoomplus']) && !isset($GLOBALS['magiczoomplus_module_loaded'])) {
+	    include (preg_match("/components\/com_(ayelshop|aceshop|mijoshop)\/opencart\//ims",DIR_APPLICATION,$matches)?'components/com_'.$matches[1].'/opencart/':'').$aFolder.'/controller/module/magiczoomplus-opencart-module/module.php';
+	};
+	
+	/* Magictoolbox magiczoomplus module END */
+	class ControllerProductCategory extends Controller {
+	  
 	public function index() { 
 		$this->language->load('product/category');
 		
@@ -393,7 +403,13 @@ class ControllerProductCategory extends Controller {
 				'common/header'
 			);
 				
-			$this->response->setOutput($this->render());										
+			$magicContent = $this->render(TRUE);
+	/* Magictoolbox magiczoomplus module BEGIN */
+	$magicContent = magiczoomplus($magicContent,$this,'category',$results);
+	
+	/* Magictoolbox magiczoomplus module END */
+	$this->response->setOutput($magicContent, $this->config->get('config_compression'));
+											
     	} else {
 			$url = '';
 			

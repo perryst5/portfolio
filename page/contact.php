@@ -9,9 +9,9 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link href='http://fonts.googleapis.com/css?family=Arvo:400,700|Ubuntu:400,700' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="../css/master.css">
+        <link rel="stylesheet" href="../assets/css/master.css">
 
-        <script src="../js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="../assets/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -32,7 +32,7 @@
             <li><a href="../index.html">Home</a></li>
             <li><a href="work.html">Work</a></li>
             <li><a href="resume.html">Resume</a></li>
-            <li class="active"><a href="contact.html">Contact</a></li>
+            <li class="active"><a href="contact.php">Contact</a></li>
           </ul>
           <a class="navbar-brand pull-right hidden-xs" href="../index.html">Steven Perry</a>
         </div><!--/.navbar-collapse -->
@@ -42,17 +42,53 @@
     <div class="container contact">
 		<div class="text-center"><h1>Contact</h1></div>
 		<hr class="title">
-  		<div class="row text-center">
-			<h2>Have an idea?</h2>
-			<p>I'm always open to new projects.</p>
-			<p> Please feel free to contact me via <a href="mailto:perryst5@gmail.com">e-mail</a>.</p>
-			<h2>Address</h2>
-			<p>2791 Northwind Drive</p>
-			<p>Apartment 59</p>
-			<p>East Lansing, MI</p>
-			<p>48823</p>
-			<h2>Phone</h2>
-			<p>(586)-850-0628</p>
+  		<div class="row">
+  			<div class="col-md-6 text-center">
+				<h2>Have an idea?</h2>
+				<p>I'm always open to new projects.</p>
+				<p> Please feel free to contact me via <a href="mailto:perryst5@gmail.com">e-mail</a>.</p>
+				<h2>Address</h2>
+				<p>2791 Northwind Drive</p>
+				<p>Apartment 59</p>
+				<p>East Lansing, MI</p>
+				<p>48823</p>
+				<h2>Phone</h2>
+				<p>(586)-850-0628</p>
+			</div>
+			<div class="col-md-6">
+				<?php
+					// display form if user has not clicked submit
+					if (!isset($_POST["submit"])) {
+					  ?>
+					  <h2>Message Me!</h2>
+					  <form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
+					  <label><span>From:</span> <input type="text" name="from" cols="40" placeholder="john.doe@gmail.com"></label>
+					  <label><span>Subject:</span> <input type="text" name="subject" cols="40"></label>
+					  <label><span>Message:</span> <textarea rows="10" cols="40" name="message"></textarea></label>
+					  <input type="submit" name="submit" value="Send Message">
+					  </form>
+					  <?php 
+					} else {  // the user has submitted the form
+					  // Check if the "from" input field is filled out
+					  if (isset($_POST["from"])) {
+					    // Check if "from" email address is valid
+					    $mailcheck = spamcheck($_POST["from"]);
+					    if ($mailcheck==FALSE) {
+					      echo "<h3>Invalid email formatting</h3>";
+					    } else {
+					      $from = $_POST["from"]; // sender
+					      $subject = $_POST["subject"];
+					      $message = $_POST["message"];
+					      // message lines should not exceed 70 characters (PHP rule), so wrap it
+					      $message = wordwrap($message, 70);
+					      // send mail
+					      mail("perryst5@gmail.com",$subject,$message,"From: $from\n");
+					      echo "Thank you for messaging us. We'll be in contact with you soon!";
+					    }
+					  }
+					}
+				?>
+			</div>
 	    </div>
     </div> <!-- /container --> 
   <footer>
@@ -71,9 +107,9 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
 
-        <script src="../js/vendor/bootstrap.min.js"></script>
+        <script src="../assets/js/vendor/bootstrap.min.js"></script>
 
-        <script src="../js/main.js"></script>
+        <script src="../assets/js/main.js"></script>
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

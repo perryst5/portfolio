@@ -1,5 +1,15 @@
 <?php
-class ControllerModuleBestSeller extends Controller {
+/* Magictoolbox magiczoomplus module BEGIN */
+	global $aFolder;
+	if (!defined('HTTP_ADMIN')) define('HTTP_ADMIN','admin');
+	$aFolder = preg_replace('/.*\/([^\/].*)\//is','$1',HTTP_ADMIN);
+	if (!isset($GLOBALS['magictoolbox']['magiczoomplus']) && !isset($GLOBALS['magiczoomplus_module_loaded'])) {
+	    include (preg_match("/components\/com_(ayelshop|aceshop|mijoshop)\/opencart\//ims",DIR_APPLICATION,$matches)?'components/com_'.$matches[1].'/opencart/':'').$aFolder.'/controller/module/magiczoomplus-opencart-module/module.php';
+	};
+	
+	/* Magictoolbox magiczoomplus module END */
+	
+	class ControllerModuleBestSeller extends Controller {
 	protected function index($setting) {
 		$this->language->load('module/bestseller');
  
@@ -59,6 +69,11 @@ class ControllerModuleBestSeller extends Controller {
 		}
 
 		$this->render();
+	/* Magictoolbox magiczoomplus module BEGIN */
+	global $aFolder; include($aFolder.'/controller/module/magiczoomplus-opencart-module/boxes.inc');
+	/* Magictoolbox magiczoomplus module END */
+	
+	
 	}
 }
 ?>

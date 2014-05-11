@@ -1,5 +1,13 @@
 <?php   
-class ControllerCommonHeader extends Controller {
+/* Magictoolbox magiczoomplus module BEGIN */
+	global $aFolder;
+	if (!defined('HTTP_ADMIN')) define('HTTP_ADMIN','admin');
+	$aFolder = preg_replace('/.*\/([^\/].*)\//is','$1',HTTP_ADMIN);
+	if (!isset($GLOBALS['magictoolbox']['magiczoomplus']) && !isset($GLOBALS['magiczoomplus_module_loaded'])) {
+		include (preg_match("/components\/com_(ayelshop|aceshop|mijoshop)\/opencart\//ims",DIR_APPLICATION,$matches)?'components/com_'.$matches[1].'/opencart/':'').$aFolder.'/controller/module/magiczoomplus-opencart-module/module.php';}
+	/* Magictoolbox magiczoomplus module END */
+	
+	class ControllerCommonHeader extends Controller {
 	protected function index() {
 		$this->data['title'] = $this->document->getTitle();
 		
@@ -147,7 +155,34 @@ class ControllerCommonHeader extends Controller {
 			$this->template = 'default/template/common/header.tpl';
 		}
 		
-    	$this->render();
+    	$magicArray = array("magiczoom" => false,
+				  "magiczoomplus" => false,
+				  "magicthumb" => false,
+				  "magictouch" => false,
+				  "magicmagnify" => false,
+				  "magicmagnifyplus" => false,
+				  "magicscroll" => false,
+				  "magicslideshow" => false,
+				  "magic360" => false);
+		$this->render();
+		/* Magictoolbox magiczoomplus module BEGIN */
+	if($this->config->get('magiczoomplus_status') != 0) {
+			$tool  = magiczoomplus_load_core_class($this);
+			if( magiczoomplus_use_effect_on($tool)) {
+				$magicArray['magiczoomplus'] = true;
+			}
+		}
+	/* Magictoolbox magiczoomplus module END */
+	foreach ($magicArray as $toolId => $run) { 
+			
+						if ($run) { 
+			
+						    $func = "$toolId".'_set_headers'; 
+			
+						    $this->output = $func($this->output); 
+			
+						}
+					    }
 	} 	
 }
 ?>

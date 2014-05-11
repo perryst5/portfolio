@@ -1,5 +1,15 @@
 <?php
-class ControllerModuleFeatured extends Controller {
+/* Magictoolbox magiczoomplus module BEGIN */
+	global $aFolder;
+	if (!defined('HTTP_ADMIN')) define('HTTP_ADMIN','admin');
+	$aFolder = preg_replace('/.*\/([^\/].*)\//is','$1',HTTP_ADMIN);
+	if (!isset($GLOBALS['magictoolbox']['magiczoomplus']) && !isset($GLOBALS['magiczoomplus_module_loaded'])) {
+	    include (preg_match("/components\/com_(ayelshop|aceshop|mijoshop)\/opencart\//ims",DIR_APPLICATION,$matches)?'components/com_'.$matches[1].'/opencart/':'').$aFolder.'/controller/module/magiczoomplus-opencart-module/module.php';
+	};
+	
+	/* Magictoolbox magiczoomplus module END */
+	
+	class ControllerModuleFeatured extends Controller {
 	protected function index($setting) {
 		$this->language->load('module/featured'); 
 
@@ -22,7 +32,7 @@ class ControllerModuleFeatured extends Controller {
 		$products = array_slice($products, 0, (int)$setting['limit']);
 		
 		foreach ($products as $product_id) {
-			$product_info = $this->model_catalog_product->getProduct($product_id);
+			$product_info = $this->model_catalog_product->getProduct($product_id) ; $product_infos[] = $product_info;
 			
 			if ($product_info) {
 				if ($product_info['image']) {
@@ -69,6 +79,11 @@ class ControllerModuleFeatured extends Controller {
 		}
 
 		$this->render();
+	/* Magictoolbox magiczoomplus module BEGIN */
+	global $aFolder; include($aFolder.'/controller/module/magiczoomplus-opencart-module/boxes.inc');
+	/* Magictoolbox magiczoomplus module END */
+	
+	
 	}
 }
 ?>

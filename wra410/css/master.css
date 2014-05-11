@@ -1,11 +1,14 @@
+@import url(http://fonts.googleapis.com/css?family=Lora:400,700,400italic|Oswald:400,300,700);
 body {
-  background-color: #35d4a0; }
+  font-family: "Lora", "serif";
+  min-height: 100%;
+  position: relative; }
 
 a {
   color: black;
   text-decoration: underline; }
   a:hover {
-    color: #369100; }
+    color: #666666; }
 
 h1 {
   font-size: 26px; }
@@ -18,7 +21,19 @@ header {
   -moz-box-shadow: 0px 3px 5px 0px rgba(50, 50, 50, 0.7);
   box-shadow: 0px 3px 5px 0px rgba(50, 50, 50, 0.7); }
   header .button-group {
-    margin-top: 50px; }
+    margin-top: 25px; }
+  header a {
+    font-family: "Oswald", "sans-serif";
+    padding: 10px 0;
+    color: white;
+    text-decoration: none;
+    font-size: 40px;
+    line-height: 50px; }
+    header a:hover {
+      color: white; }
+
+#main-content {
+  min-height: 55%; }
 
 .content {
   border-radius: 6px;
@@ -45,6 +60,17 @@ footer {
   -webkit-box-shadow: 0px -3px 5px 0px rgba(50, 50, 50, 0.7);
   -moz-box-shadow: 0px -3px 5px 0px rgba(50, 50, 50, 0.7);
   box-shadow: 0px -3px 5px 0px rgba(50, 50, 50, 0.7); }
+  footer .columns {
+    text-align: center;
+    margin-top: 120px;
+    color: white;
+    font-size: 30px; }
+    footer .columns a {
+      color: white;
+      font-size: 20px;
+      text-decoration: none; }
+      footer .columns a:hover {
+        text-decoration: underline; }
 
 @media (max-width: 640px) {
   header {
