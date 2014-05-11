@@ -17,6 +17,18 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
+        <?php
+			function spamcheck($field) {
+			  // Sanitize e-mail address
+			  $field=filter_var($field, FILTER_SANITIZE_EMAIL);
+			  // Validate e-mail address
+			  if(filter_var($field, FILTER_VALIDATE_EMAIL)) {
+			    return TRUE;
+			  } else {
+			    return FALSE;
+			  }
+			}
+		?>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -83,7 +95,7 @@
 					      $message = wordwrap($message, 70);
 					      // send mail
 					      mail("perryst5@gmail.com",$subject,$message,"From: $from\n");
-					      echo "Thank you for messaging us. We'll be in contact with you soon!";
+					      echo "<p>Thank you for messaging me. I'll be in contact with you soon!</p>";
 					    }
 					  }
 					}
