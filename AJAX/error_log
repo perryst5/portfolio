@@ -1,1 +1,0 @@
-[14-Apr-2014 15:52:23 America/Denver] PHP Warning:  mysqli::mysqli(): (28000/1045): Access denied for user 'stevenp5'@'localhost' (using password: YES) in /home2/stevenp5/public_html/wra410/dal/data-access-layer.inc.php on line 398
