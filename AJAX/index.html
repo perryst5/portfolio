@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+   <title>AJAX TURNS DOWN FOR WHAT?</title>
+</head>
+
+<body onload="setInterval('getLatestBook()', 5000)">
+   <script type="text/javascript">
+		function getSpecifiedUrl() {
+		   var urlFromForm = document['ajaxTest'].elements['url'].value;
+		   return syncRequest(urlFromForm);
+		}
+		function syncRequest(url) {
+		   var xhr = new XMLHttpRequest();
+		   /* The try and catch commands let us catch exceptions, a kind of error */
+		   try {
+		      xhr.open("GET", url, false);
+		      xhr.send(null);
+		      
+		      /* See what happened */
+		      if (xhr.status == 200) {   /* 200 means "OK" */
+		         addTableRow(xhr.responseText);
+		      } else {
+		         alert('Error ' + xhr.status + ' ' + xhr.statusText);
+		      }
+		   } catch (e) {
+		      /* We caught an exception; report it */
+		      alert('Exception: ' + e.toString());
+		   }
+		   return false;
+		}
+		function addParagraph(text) {
+		   var newParagraph = document.createElement("p");
+		   newParagraph.innerHTML = text;
+		   document.body.appendChild(newParagraph);
+		   return false;
+		}
+		function search() { 
+			var searchFor = document['getData'].elements['searchFor'].value; 
+			return syncRequest('get-data.php?search=' + searchFor); 
+		}
+		var lastRow = '';
+		function addTableRow(rowData) {
+		   /* Find our table */
+		   var table = document.getElementById('data');
+		   /* See if it already contains this row */
+		   if (rowData == lastRow) return false;
+		   lastRow = rowData;
+		   /* Create a table row element */
+		   var newRow = document.createElement("tr");
+		   /* Insert its contents and add it to the table */
+		   newRow.innerHTML = rowData;
+		   table.appendChild(newRow);
+		   return false;
+		}
+		var xhr;
+		function processResponse() {
+		   if (xhr.readyState != 4) return; /* not done yet */
+		   if (xhr.status == 200) {   /* 200 means "OK" */
+		      addTableRow(xhr.responseText);
+		   } else {
+		      alert('Error ' + xhr.status + ' ' + xhr.statusText);
+		   }
+		}
+		function asyncRequest(url) {
+		   try {
+		      xhr = new XMLHttpRequest();
+		      xhr.onreadystatechange = processResponse;
+		      xhr.open("GET", url, true);
+		      xhr.send(null);
+		   } catch (e) {
+		      /* We caught an exception; report it */
+		      alert('Exception: ' + e.toString());
+		   }
+		   return false;
+		}
+		function getLatestBook() {
+		   asyncRequest('get-recent.php');
+		}
+	</script>
+	
+    <p>--- Exercise 3 - 6 ---</p>
+	 <form name="ajaxTest" action="" method="get" onsubmit="return getSpecifiedUrl()">
+	   <label> URL:
+	      <input type="text" name="url">
+	   </label>
+	   <input type="submit" name="Go" value="Go">
+	</form>
+    <p>--- Exercise 7 and 8 ---</p>
+    <form name="getData" action="" method="get" onsubmit="return search()">
+	   <label> Search for: 
+	      <input type="text" name="searchFor">
+	   </label>
+	   <input type="submit" name="Go" value="Go">
+	</form>
+	
+	<table id='data'>
+	</table>
+</body>
+</html>

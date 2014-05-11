@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created using vQModerator's XML Generator by The Wizard of Osch for http://www.crystalcopy.nl //-->
+<!-- (Based on vQmod XML Generator by UKSB - http://www.opencart-extensions.co.uk) //-->
+<modification>
+	<id><![CDATA[MagicToolbox mod for OpenCart]]></id>
+	<version><![CDATA[1.5]]></version>
+	<vqmver required="true"><![CDATA[2.4.0]]></vqmver>
+	<author><![CDATA[magictoolbox.com]]></author>
+	<file path="catalog/controller/product/" name="product.php,category.php,manufacturer.php,search.php">
+		<operation error="abort" info="">
+			<search position="after"><![CDATA[<?php]]></search>
+			<add><![CDATA[
+			
+    global $aFolder;
+    if (!defined('HTTP_ADMIN')) define('HTTP_ADMIN','admin');
+    $aFolder = preg_replace('/.*\/([^\/].*)\//is','$1',HTTP_ADMIN);
+    if (!isset($GLOBALS['magictoolbox']['magiczoomplus']) && !isset($GLOBALS['magiczoomplus_module_loaded'])) {
+
+	include (preg_match("/components\/com_(ayelshop|aceshop|mijoshop)\/opencart\//ims",__FILE__,$matches)?'components/com_'.$matches[1].'/opencart/':'').$aFolder.'/controller/module/magiczoomplus-opencart-module/module.php';
+    };
+			
+			
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/product/" name="product.php">
+		<operation error="abort" info="">
+			<search position="replace" regex="true"><![CDATA[/\$this\->response\->setOutput\(\$this\->render\(\)\);/ims]]></search>
+			<add><![CDATA[			
+			
+    $this->response->setOutput(magiczoomplus($this->render(TRUE),$this,'product',$product_info), $this->config->get('config_compression'));
+			
+			
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/product/" name="product.php">
+		<operation error="abort" info="">
+			<search position="replace" regex="true"><![CDATA[/(\$results = \$this\->model_catalog_product\->getProductImages\(\$this\->request\->get\['product_id'\]\);)/]]></search>
+			<add><![CDATA[			
+			
+    $1 $product_info['images'] = $results;
+			
+			
+			]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/product/" name="category.php">
+		<operation error="abort" info="">
+			<search position="replace" regex="true"><![CDATA[/\$this\->response\->setOutput\(\$this\->render\(\)\);/ims]]></search>
+			<add><![CDATA[	$this->response->setOutput(magiczoomplus($this->render(TRUE),$this,'category', $results), $this->config->get('config_compression'));]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/product/" name="manufacturer.php">
+		<operation error="abort" info="">
+			<search position="replace" index="2" regex="true"><![CDATA[/\$this\->response\->setOutput\(\$this\->render\(\)\);/ims]]></search>
+			<add><![CDATA[	$this->response->setOutput(magiczoomplus($this->render(TRUE),$this,'manufacturers', $results), $this->config->get('config_compression'));]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/product/" name="search.php">
+		<operation error="abort" info="">
+			<search position="replace" regex="true"><![CDATA[/\$this\->response\->setOutput\(\$this\->render\(\)\);/ims]]></search>
+			<add><![CDATA[	$this->response->setOutput(magiczoomplus($this->render(TRUE),$this,'search', $results), $this->config->get('config_compression'));]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/common/" name="header.php">
+		<operation error="abort" info="">
+			<search position="after"><![CDATA[<?php]]></search>
+			<add><![CDATA[
+  
+  
+  	global $aFolder;
+    if (!defined('HTTP_ADMIN')) define('HTTP_ADMIN','admin');
+    $aFolder = preg_replace('/.*\/([^\/].*)\//is','$1',HTTP_ADMIN);
+    if (!isset($GLOBALS['magictoolbox']['magiczoomplus']) && !isset($GLOBALS['magiczoomplus_module_loaded'])) {
+	include (preg_match("/components\/com_(ayelshop|aceshop|mijoshop)\/opencart\//ims",__FILE__,$matches)?'components/com_'.$matches[1].'/opencart/':'').$aFolder.'/controller/module/magiczoomplus-opencart-module/module.php';
+    };]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="replace" regex="true"><![CDATA[/\$this\-\>render\(\);/ims]]></search>
+			<add><![CDATA[
+	    $this->render();
+    if($this->config->get('magiczoomplus_status') != 0) {
+        $tool = magiczoomplus_load_core_class($this);
+        if(magiczoomplus_use_effect_on($tool)) {
+            $this->output = magiczoomplus_set_headers($this->output);
+        }
+    };]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/module/" name="latest.php,bestseller.php,special.php,featured.php">
+		<operation error="abort" info="">
+			<search position="after"><![CDATA[<?php]]></search>
+			<add><![CDATA[
+    global $aFolder;
+    if (!defined('HTTP_ADMIN')) define('HTTP_ADMIN','admin');
+    $aFolder = preg_replace('/.*\/([^\/].*)\//is','$1',HTTP_ADMIN);
+    if (!isset($GLOBALS['magictoolbox']['magiczoomplus']) && !isset($GLOBALS['magiczoomplus_module_loaded'])) {
+	include (preg_match("/components\/com_(ayelshop|aceshop|mijoshop)\/opencart\//ims",__FILE__,$matches)?'components/com_'.$matches[1].'/opencart/':'').$aFolder.'/controller/module/magiczoomplus-opencart-module/module.php';
+    };]]></add>
+		</operation>
+		<operation error="abort" info="">
+			<search position="after" regex="true"><![CDATA[/\$this\-\>render\(\);/ims]]></search>
+			<add><![CDATA[
+	global $aFolder; include($aFolder.'/controller/module/magiczoomplus-opencart-module/boxes.inc');]]></add>
+		</operation>
+	</file>
+	<file path="catalog/controller/module/" name="featured.php">
+		<operation error="abort" info="">
+			<search position="after" regex="true"><![CDATA[/\$product\_info = \$this\-\>model\_catalog\_product\-\>getProduct\(\$product\_id\);/ims]]></search>
+			<add><![CDATA[
+	$product_infos[] = $product_info;]]></add>
+		</operation>
+	</file>
+</modification>

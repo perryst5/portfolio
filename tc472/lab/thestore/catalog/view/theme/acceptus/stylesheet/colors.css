@@ -1,0 +1,127 @@
+/*--------------------------------------------------------------------------/
+* @Author		KulerThemes.com http://www.kulerthemes.com
+* @Copyright	Copyright (C) 2012 - 2013 KulerThemes.com. All rights reserved.
+* @License		KulerThemes.com Proprietary License
+/---------------------------------------------------------------------------*/
+
+/* =============== PREDEFINED COLORS - RED =============== */
+/* DEFAULT HTML - HEADING STYLES */
+.color-red h1 {
+	color: #E55B4C;
+}
+/* DEFAULT HTML - LINK STYLES */
+.color-red a {
+	color: #E55B4C;
+}
+/* DEFAULT HTML - BUTTONS */
+.color-red .button {
+	background-color: #E55B4C;
+}
+/* HEADER */
+.color-red #topbar #currency a {
+	background-color: #E55B4C;
+}
+.color-red #topbar #currency a.current {
+	color: #E55B4C;
+}
+.color-red #topbar #welcome a:hover {
+	color: #E55B4C;
+}
+.color-red #topbar .links a:hover {
+	color: #E55B4C;
+}
+.color-red #header #cart .heading {
+	background-color: #E55B4C;
+}
+.color-red .mini-cart-info .total {
+	color: #E55B4C;
+}
+.color-red .mini-cart-info .name a:hover {
+	color: #E55B4C;
+}
+.color-red .mini-cart-total .total {
+	color: #E55B4C;
+}
+/* MENU */
+.color-red #menu {
+	background-color: #E55B4C;
+}
+.color-red .mainmenu ul li:hover > a,
+.color-red .mainmenu ul li.active > a {
+	color: #E55B4C;
+}
+/* BREADCRUMB */
+.color-red .breadcrumb {
+	border-bottom: 1px solid #E55B4C;
+}
+.color-red .breadcrumb a:last-child:before {
+	background-color: #E55B4C;
+}
+.color-red .breadcrumb a:last-child {
+	color: #E55B4C;
+}
+/* BOX */
+.color-red .box-heading {
+	border-bottom: 1px solid #E55B4C;
+}
+/* TREEMENU */
+.color-red .treemenu li a:hover,
+.color-red .treemenu li a.active {
+	color: #E55B4C;
+}
+/* PAGINATION */
+.color-red .pagination .links b {
+	background-color: #E55B4C;
+}
+.color-red .pagination .links a:hover {
+	background-color: #E55B4C;
+}
+/* BOX PRODUCTS */
+.color-red .box-product .price {
+	color: #E55B4C;
+}
+/* PRODUCTS LIST */
+.color-red .product-list > div:hover {
+	border-color: #E55B4C;
+}
+.color-red .product-list > div:hover .name a {
+	color: #E55B4C;
+}
+.color-red .product-list .cart a {
+	background-color: #E55B4C;
+}
+/* hover */
+.color-red .product-list .wishlist a:hover,
+.color-red .product-list .compare a:hover {
+	color: #E55B4C;
+}
+/* PRODUCTS GRID */
+.color-red .product-grid .cart a {
+	color: #E55B4C;
+}
+.color-red .product-grid .cart a:before {
+	background-color: #E55B4C;
+}
+.color-red .product-grid .cart a span:before {
+	background-color: #E55B4C;
+}
+/* hover */
+.color-red .product-grid .price-label div {
+	background-color: #E55B4C;
+}
+/* TABS */
+.color-red .htabs a:hover {
+	color: #E55B4C;
+}
+/* CATEGORY */
+.color-red .product-filter .display span {
+	color: #E55B4C;
+}
+/* PRODUCT */
+.color-red .product-info .price {
+	color: #E55B4C;
+}
+/* CHECKOUT */
+.color-red .checkout-heading {
+	background-color: #E55B4C;
+}
